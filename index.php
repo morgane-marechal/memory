@@ -24,7 +24,41 @@ session_start();
                 <h1>Voulez-vous jouer au Memory ?</h1>
             </div>
         </div>
+     
+
+        <div id="memory-card">
+        <!-- <img src="images/1.jpg"/> -->
+        
+        </div>
+
+        
+        <?php 
+            // function getAllCards(){
+            //     global $bdd;
+            //     echo "Test fonction allCards";
+            //     $allInfo = $bdd -> prepare("SELECT * FROM cartes");
+            //     $allInfo -> execute();
+            //     $result = $allInfo->fetch(PDO::FETCH_ASSOC);
+            //     echo var_dump($result);
+
+            // }
+
+            // echo getAllCards();
+            // echo '<br><img src="images/1.jpg"/>';
+            // echo '<br><h1>Hello world</h1>';
+
+        ?> 
+
+        <?php include 'Card-PDO.php'; ?>
+        <div id="all-card">
+        <?php
+        $test->getAllCards();
+        ?>
+        </div>
+
+        </div>
     </main>
+
 
     <?php include('footer.php'); ?>
 </body>

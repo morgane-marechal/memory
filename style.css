@@ -156,33 +156,25 @@ h1, h2{
 }
 
 
-/* -------- calendrier---------*/
-
-
-table, tr, td{
-    background-color: rgba(33, 55, 255, 0.2);
-    text-align: center;
+/* -------- cartes---------*/
+#all-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width:100%;
+    padding:2%7%2%7%;
 }
 
-thead{
-    background-color: grey;
-    color:aliceblue;
+.card{
+    width:200px;
+    margin:1%;
+}
+.card img{
+    width:100%;
+    background-color: aqua;
 }
 
-table{
-    margin:2%;
-}
 
-tr{
-    border:solid;
-    padding:10px;
-    
-}
-td{
-    height:50px;
-    width: 10%;
-    padding-top:1%;
-}
 
 
 

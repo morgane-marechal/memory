@@ -43,8 +43,8 @@ session_start();
             echo "<br>Le login est ".$login;
             $test0 = new User("$login",$_POST['password'], "$email");
             $test0 ->register("$login",$_POST['password'], "$email"); 
-
-            
+        }else{
+            echo "Il manque au moins un champs à remplir";
         }
         // $test = new User("marguerit","bouture12", "bibi@gmail.com");
         // $test ->register("marguerit","bouture12", "bibi@gmail.com");

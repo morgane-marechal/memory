@@ -43,6 +43,8 @@ session_start();
                     
                                 
                             }
+                        }else{
+                            echo "Il manque au moins un champs à remplir";
                         }
                                 
                         ?>
