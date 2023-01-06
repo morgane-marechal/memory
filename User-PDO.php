@@ -2,15 +2,14 @@
 
 // --------------------connexion à PDO----------------------------
 
-$dsn = 'mysql:host=localhost;dbname=classes;charset=utf8';
+$dsn = 'mysql:host=localhost;dbname=memory;charset=utf8';
 $user = 'root';
 $password = '';
 $bdd = new PDO($dsn,$user,$password);
 
 try{
-    $bdd=new PDO('mysql:host=localhost;dbname=classes;charset=utf8','root','');
+    $bdd=new PDO('mysql:host=localhost;dbname=memory;charset=utf8','root','');
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "La connection avec PDO fonctionne";
 }catch(PDOException $e){
     echo "Echec de la connexion: ".$e->getmessage();
     exit;
@@ -21,9 +20,9 @@ try{
 
 class User{
     private $id;
-    public $login, $password, $email, $firstname, $lastname;
+    public $login, $password, $email;
 
-    function __construct($login, $password, $email, $firstname, $lastname) {
+    function __construct($login, $password, $email) {
         $this->login = $login;
         $this->password = $password;
         $this->email = $email;
@@ -32,19 +31,20 @@ class User{
 
     public function register(){
         global $bdd;
-        
         $check_login = $bdd ->prepare("SELECT count(*) as count FROM utilisateurs where login = '$this->login'");
         $check_login->execute();
         $res = $check_login->fetch(PDO::FETCH_ASSOC);
         //echo var_dump($res);
         $count = intval($res['count']);
         if ($count>0){
-        echo "<p>Ce login est déjà pris, veuillez en choisir un autre!</p>";}
-        else{
+        echo "<p>Ce login est déjà pris, veuillez en choisir un autre!</p>";
+        }else{
                 $newPeople = $bdd->prepare("INSERT INTO utilisateurs ( login, password, email)
                  VALUES(?,?,?)");
                $newPeople->execute(array($this->login,$this->password, $this->email));
                echo "Vous avez ajouté un nouvel utilisateur avec succès";
+               header('Location: http://localhost/memory/connexion.php'); // <- redirection vers la page connexion
+               exit();
         }
     }
 
@@ -61,9 +61,11 @@ class User{
             echo "Bravo vous êtes connectés!
             <br> Si ce message s'affiche c'est que vous vous êtes connecté avec succès<br>";
             $_SESSION['login'] = $login;
-            $_SESSION['email'] = $this->email;
 
-            echo "Voici vos identifiants de session: ".$login.", ".$this->email.", ".$this->firstname.", ".$this->lastname."<br>";
+            echo "Voici vos identifiants de session: ".$_SESSION['login'].", ".$this->email."<br>";
+            header('Location: http://localhost/memory/index.php'); // <- redirection vers la page connexion
+            exit();
+
         }else{
             echo "Problème d'identifiant ou de mot de passe";
         }
@@ -77,7 +79,7 @@ class User{
         session_destroy();
     }
 
-    public function update($newlogin, $password, $email, $firstname,$lastname){
+    public function update($newlogin, $password, $email){
         global $bdd;
         $login=$_SESSION['login']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
         $this->password=$password;
@@ -127,8 +129,9 @@ class User{
 
 }
 
-$test = new User("Aladdin Gredin","supermotdepasse", "aldino@gmail.com","Aladdin","Pshitt");
-$test -> getAllInfos();
+// $test = new User("Fleur","bouture12", "bibi@gmail.com");
+// $test ->register("Fleur","bouture12", "bibi@gmail.com");
+//$test -> getAllInfos();
 //echo $test -> register("Ala Dine","123XX", "aldino@gmail.com","Aladdin","Pshitt");
 //echo $test -> connect("Aladdin Gredin", "supermotdepasse");
 //echo $test -> update("Aladdin Gredin","supermotdepasse", "aldino@gmail.com","Aladdin","Pshitt")

@@ -1,0 +1,385 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;}
+
+/* ------- CSS du header ------*/
+nav{
+    display:flex;
+    flex-direction: row;
+    height:7%;
+    width: 100%;
+    background-color: rgb(38, 20, 63);
+
+    justify-content: space-around;
+    align-items: center;
+    position:fixed ;
+    z-index:10;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+li{
+    height:100%;
+    list-style-type: none;
+    margin:0px 20px 0px 20px;
+}
+
+
+a{
+    text-decoration: none;
+    color:rgb(150, 225, 248);
+    font-size: 1.1em;
+
+}
+
+li p{
+    color:antiquewhite;
+}
+
+a:hover{
+    color: rgb(121, 112, 200);
+
+}
+
+
+#sessionlog{
+    background-color: rgb(25, 23, 44);
+    color:white;
+    font-weight: bold;
+    z-index:11;
+}
+
+/* ------- CSS du body ------*/
+body{
+margin:0; 
+background-color: rgb(167, 148, 213,0.5);
+}
+
+
+
+#welcome h1{
+    font-size:1.5em;
+    color:rgb(0, 0, 0);
+    text-align:center;
+    text-transform: uppercase;
+    padding:5%;
+    letter-spacing:0.1em;
+
+}
+
+#welcome{
+    background-color: rgb(255,255,255,0.8);
+    width:50%;
+
+}
+
+#logout p{
+    font-size:1.5em;
+    color:white;
+    text-align:center;
+    text-transform: uppercase;
+    padding-top:5%;
+    letter-spacing:0.1em;
+}
+
+main{
+    height:100%;
+    padding-top:4%;
+}
+
+main p{
+    color:white;
+    text-align:center;
+}
+#displayBook p{
+    color:rgb(25, 23, 44);
+    font-weight:bold;
+    font-size:1.1em;
+}
+#displayBook{
+    height:auto;
+    padding-bottom:80px;
+}
+
+form{
+    align-items:center;
+}
+
+form p{
+    color:rgb(29, 29, 58);
+    text-align:left;
+}
+
+input{
+    border-radius: 5px;
+    background-color: rgb(25, 23, 44,0.7);
+    color:white;
+    height:40px;
+    font-size: 1.1rem;
+}
+
+input:hover{
+    background-color: rgb(25, 23, 44);
+}
+
+select{
+    width:10%;
+    height:40px;
+    border-radius:10px;
+    font-size: 1.1em;
+}
+
+button{
+    border-radius: 5px;
+    background-color: rgb(25, 23, 44,0.7);
+    color:white;
+    height:40px;
+	margin-bottom:50px;
+	width:30%;
+}
+
+button:hover{
+    background-color: rgb(25, 23, 44);
+  
+}
+
+h1, h2{
+    text-align:center;
+    color:rgb(25, 23, 44);
+}
+
+
+/* -------- calendrier---------*/
+
+
+table, tr, td{
+    background-color: rgba(33, 55, 255, 0.2);
+    text-align: center;
+}
+
+thead{
+    background-color: grey;
+    color:aliceblue;
+}
+
+table{
+    margin:2%;
+}
+
+tr{
+    border:solid;
+    padding:10px;
+    
+}
+td{
+    height:50px;
+    width: 10%;
+    padding-top:1%;
+}
+
+
+
+/* -------- formulaire de connexion, inscription, changement d'info, livre d'or---------*/
+
+#connexion_form, #compte_form, #reservation_form{
+    padding-top:5%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+
+
+form{
+    background-color: azure;
+    display: flex;
+    flex-direction:column;
+    width: 50%;
+    padding:2%;
+    background-color: rgb(145, 157, 245,0.8);
+
+    border-radius:10px ;
+    margin-bottom:30px;
+}
+
+input::placeholder{
+    color:white;
+}
+form input{
+    width:50%;
+    margin:5px 0px 5px 0px;
+
+}
+
+.comment{
+    height:100px;
+}
+
+/* -------- page logout---------*/
+
+#logout p{
+    color: rgb(38, 20, 63);
+}
+
+#logout a{
+    color: rgb(73, 16, 51);
+}
+
+#logout a:hover{
+    font-weight:bold;
+}
+
+/* -------- page évènement---------*/
+
+
+/* -------- footer---------*/
+footer{
+    bottom: 0;
+    position:fixed ;
+    width:100%;
+}
+footer ul{
+    display:flex;
+    flex-direction: row;
+    height:80px;
+    width: 100%;
+    background-color: rgb(38, 20, 63);
+    justify-content: space-around;
+    align-items: center;
+    text-align:center;
+}
+
+.lien{
+    margin-top:60px;
+}
+
+
+
+.logo{
+    width:15%;
+}
+
+/* -------- media query pour mobile---------*/
+
+
+@media all and (orientation: portrait) {
+    
+   
+
+    nav{
+        display:flex;
+        width: 100%;
+        background-color: rgb(38, 20, 63);
+        position:fixed ;
+        z-index:10;
+        height:250px;
+        padding:3%0%3%0%;
+    }
+
+    #welcome h1{
+        font-size:4em;
+        text-align:center;
+        text-transform: uppercase;
+        padding:40%0%0%25%;
+        letter-spacing:0.1em;
+        width:70%;
+        
+    }
+    h2{
+        margin-top:10%;
+        font-size: 2.5em;
+    }
+    h3{
+        font-size: 2.5em;
+    }
+
+    p{
+        font-size: 2em;
+    }
+
+    header p{
+        font-size:1.4em;
+        width:30%;
+    }
+    
+    ul{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+    }
+    
+    li{
+        list-style-type: none;
+        margin:5px 20px 5px 20px;
+        font-size:1.2em;
+        
+    }
+    
+   
+    .material-symbols-outlined {
+     width:60px;
+      }
+
+    a{
+        text-decoration: none;
+        color:white;
+        font-size: 1.6em;
+        height:50px;
+    }
+
+    li p{
+        color:rgb(150, 189, 197);
+    }
+    
+    a:hover{
+        color: rgb(25, 23, 44);
+    
+    }
+
+    #connexion_form, #compte_form{
+        padding-top:25%;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+    }
+    
+    form{
+        width: 90%;
+    }
+    
+    form input{
+        width:80%;
+        margin:15px 0px 5px 0px;
+        height:80px;
+    
+    }
+    
+
+    input{
+        border-radius: 5px;
+        background-color: rgb(25, 23, 44,0.7);
+        color:white;
+        height:80px;
+        font-size:2em;
+    }
+
+    main{
+        width:100%;
+        padding-top:21%;
+    }
+    
+    main p{
+        font-size: 2em;
+    }
+
+
+
+
+}
