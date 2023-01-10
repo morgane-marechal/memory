@@ -98,18 +98,11 @@ main p{
     color:white;
     text-align:center;
 }
-#displayBook p{
-    color:rgb(25, 23, 44);
-    font-weight:bold;
-    font-size:1.1em;
-}
-#displayBook{
-    height:auto;
-    padding-bottom:80px;
-}
+
 
 form{
     align-items:center;
+    width:20%;
 }
 
 form p{
@@ -162,20 +155,54 @@ h1, h2{
     flex-direction: row;
     flex-wrap:wrap;
     width:100%;
-    padding:2%7%2%7%;
+    padding:2%;
 }
 
 .card{
-    width:200px;
-    margin:1%;
+    width:100%;
+    background-color: rgb(210, 177, 241);
 }
 .card img{
-    width:100%;
+    padding :0;
+    height:150px;
     background-color: aqua;
 }
+button{
+    width:100%;
+    background-color: blueviolet;
+}
 
+form{
+    background-color: rgb(180, 231, 231);
+    display: flex;
+    flex-direction:column;
+    width: 30%;
+    height:250px;
+    padding:1%;
+    border-radius:10px ;
+    margin-bottom:60px;
+}
 
+#board-card{
+    display: flex;
+    flex-direction:column;
+    width: 9%;
+    margin:1px;
+    height:180px;
+    background-color: rgba(245, 145, 232, 0.8);
+    margin-bottom:3px;
+}
 
+#start{
+   
+        background-color: azure;
+        width: 10%;
+        height:180px;
+        padding:1%;
+        border-radius:10px ;
+        margin-bottom:60px;
+
+}
 
 
 /* -------- formulaire de connexion, inscription, changement d'info, livre d'or---------*/
@@ -189,17 +216,7 @@ h1, h2{
 
 
 
-form{
-    background-color: azure;
-    display: flex;
-    flex-direction:column;
-    width: 50%;
-    padding:2%;
-    background-color: rgb(145, 157, 245,0.8);
 
-    border-radius:10px ;
-    margin-bottom:30px;
-}
 
 input::placeholder{
     color:white;
