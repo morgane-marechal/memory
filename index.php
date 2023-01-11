@@ -38,6 +38,8 @@ session_start();
         <div id="all-card">
         <?php
         //$_SESSION['temporary_array']=[]; //pour réinitialiser le tableau
+        //$_SESSION['permanent_array']=[]; //pour réinitialiser le jeu
+
         $temporary_array=$_SESSION['temporary_array'];
         $permanent_array=$_SESSION['permanent_array'];
         var_dump($temporary_array);
@@ -116,7 +118,7 @@ session_start();
             $card2 = $infoCard[$val2]->getFaceOn();
 
             //si card1 et card2 sont pareil push les id dans array permanent_array
-            if($card1===$card2){
+            if(($card1===$card2) && ($val1!=$val2)){
                 if ($_SESSION['set_array'] != "OK"){
                     $_SESSION['set_array'] = "OK";
                     $permanent_array=[];
@@ -133,9 +135,9 @@ session_start();
                    echo "Tableau permanent si deux cartes pareils";
                    echo var_dump($new_permanent_array);
                    $_SESSION['temporary_array']=[];
-                };
-
-               
+                }
+            }if(($card1===$card2) && ($val1===$val2)){
+                $_SESSION['temporary_array']=[];
             }
             //si card1 et card2 sont différents reset le tableau $temporary_array
             if($card1 != $card2){
