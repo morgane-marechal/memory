@@ -161,14 +161,30 @@ h1, h2{
 .card{
     width:100%;
     background-color: rgb(210, 177, 241);
+    padding:0%;
+
 }
 .card img{
     padding :0;
-    height:150px;
+    height:120px;
     background-color: aqua;
+    padding:0%;
+
 }
+
+#board-card{
+    display: flex;
+    flex-direction:column;
+    width: 9%;
+    height:130px;
+    background-color: rgba(211, 112, 198, 0.8);
+    margin-bottom:30px;
+    padding:0%;
+
+}
+
 button{
-    width:100%;
+    width:8%;
     background-color: blueviolet;
 }
 
@@ -179,19 +195,9 @@ form{
     width: 30%;
     height:250px;
     padding:1%;
-    border-radius:10px ;
     margin-bottom:60px;
 }
 
-#board-card{
-    display: flex;
-    flex-direction:column;
-    width: 9%;
-    margin:1px;
-    height:180px;
-    background-color: rgba(245, 145, 232, 0.8);
-    margin-bottom:3px;
-}
 
 #start{
    

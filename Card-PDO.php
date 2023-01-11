@@ -19,9 +19,11 @@ try{
 // --------------------Définition de la classe Card----------------------------
 
 class Game{
-    public $id, $faceon, $flip;
+    public $id;
+    public $faceon;
+    public $flip;
 
-   
+   public $faceoff= "<img src = 'images/back.jpg'/>";
 
 
     function __construct($id, $faceon) {
@@ -29,7 +31,6 @@ class Game{
          $this->faceon = $faceon;
          $this->flip = false;
      }
-
 
      public function getId(){
         return $this->id;
@@ -39,7 +40,44 @@ class Game{
         return $this->faceon;
       }
 
+      public function getFlip(){
+        return $this->flip;
+      }
 
+      public function getFaceOff(){
+        return $this->faceoff;
+      }
+
+      public function set_cover($faceoff) {
+       return $this->faceon = $faceoff;
+       }
+
+       public function testFlip() {
+          if($this->flip===false){
+            return "la carte est sur false";
+          }elseif($this->flip===true){
+            return "la carte est sur true";
+          }else{
+            return "something else";
+          }
+        }
+
+        public function isFlipped(){
+          return $this->flip = true;
+        }
+
+        public function toggleFlip(){
+         if($this->flip===false){
+          return $this->flip = true;
+         }elseif($this->flip===true){
+          return $this->flip = false;
+         }else{
+          echo "ERROR";
+         }
+          
+        }
+
+       }
 
  
     // public function getAllCards(){
@@ -55,7 +93,7 @@ class Game{
     //         }
     // }
 
-}
+
 
 
 //echo $test->getAllCards();
