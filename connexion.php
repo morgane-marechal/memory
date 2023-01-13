@@ -18,7 +18,7 @@ session_start();
                 <form action="" method="post">
                     <h3>Connexion</h3>
                     <input type="text" name="login" id="login" placeholder="Login*" required minlength="3"> 
-                    <input type="password" name="password" id="password" placeholder="Password*" required minlength="5">
+                    <input type="password" name="password" id="password" placeholder="Password*" required minlength="3">
                     </select>
                     <input class="submit" type="submit" value="Envoyer">
                     <i class="small">* Champs obligatoires avec 3 caractères minimum</i>

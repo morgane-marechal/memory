@@ -61,7 +61,8 @@ class User{
             echo "Bravo vous êtes connectés!
             <br> Si ce message s'affiche c'est que vous vous êtes connecté avec succès<br>";
             $_SESSION['login'] = $login;
-
+            $_SESSION['password'] = $password;
+            $_SESSION['email'] = $this->email;
             echo "Voici vos identifiants de session: ".$_SESSION['login'].", ".$this->email."<br>";
             header('Location: http://localhost/memory/index.php'); // <- redirection vers la page connexion
             exit();
@@ -118,6 +119,15 @@ class User{
         $result = $allInfo->fetch(PDO::FETCH_ASSOC);
         echo "<br>Le login est ".$result ['login'];
     }
+
+    public function getId(){
+        global $bdd;
+        $allInfo = $bdd -> prepare("SELECT * FROM utilisateurs WHERE login = '$this->login'");
+        $allInfo -> execute();
+        $result = $allInfo->fetch(PDO::FETCH_ASSOC);
+        echo "<br>L'Id' est ".$result ['id'];
+    }
+
 
     public function getEmail(){
         global $bdd;

@@ -14,11 +14,22 @@ class Score{
     }
 
     public function setScore($total_card, $nb_card_return){
-       $start_score = $total_card*5;
-       $minus_point = $nb_card_return*3;
+       $start_score = $total_card*10;
+       $minus_point = $nb_card_return;
        $total = $start_score - $minus_point;
        return $this->score = $total;
     }
+    
+    public function getTotalCard(){
+        return $this -> total_card;
+    }
+
+    public function getcard_return(){
+        return $this -> nb_card_return;
+    }
+
+
+
 
     public function getScore(){
         return $this -> score;
@@ -26,7 +37,6 @@ class Score{
 
     public function registerScore(){
         global $bdd;
-
         $newScore = $bdd->prepare("INSERT INTO score ( login_id, score, nb_card_return, total_card)
                  VALUES(?,?,?,?)");
                $newScore->execute(array($this->login_id,$this->score, $this->nb_card_return, $this->total_card));
@@ -39,6 +49,6 @@ class Score{
 
 
 
-}
+
 
 ?>

@@ -69,6 +69,9 @@ session_start();
             <?php } ?>
         
             <?php include 'Card-PDO.php'; ?>
+            <?php include 'User-PDO.php'; ?>
+            <?php include 'Score.php'; ?>
+
             <div id="all-card">
     <?php
         //_______________pour reset session_____________
@@ -78,6 +81,7 @@ session_start();
             $_SESSION['permanent_array']=[]; //pour réinitialiser le jeu
             $_SESSION['order_card']=[];
             $_SESSION['memory_game'] = [];
+            $_SESSION['nb_card_return']=0;
         }
     // echo $_SESSION['order_card'];
     // echo $_SESSION['memory_game'];
@@ -93,7 +97,29 @@ session_start();
             if($num_for_win_game===$total_card){
                     echo "<div id = 'win'>Bravo vous avez fini le jeu !<br></div>";
             }
+
+            //_______________________initialiser variable pour score________________
+
             echo $_SESSION['nb_card_return']++;
+            echo $nb_card_return = $_SESSION['nb_card_return']++;
+            echo $total_card=$_SESSION['total_card'];
+            //$scoreLogin = new Score("$login_id", "$nb_card_return", "$total_card");
+        
+            // faire requete PDO pour aller chercher infos du login (login et login_id)
+            $login=$_SESSION['login'];
+            //echo $login."<br>";
+            $test = new User("$login", "$password", "$email");
+           /* $login_id= $test -> getId();
+            //echo "L'id est ".$login_id;
+            echo "<br>";
+            $scoreLogin = new Score("$login_id", "$nb_card_return", "$total_card");
+           echo $scoreLogin->setScore($total_card, $nb_card_return);
+           echo "<br>";
+           echo "le nombre de tours est : ".$scoreLogin->getcard_return();
+           echo "<br>";
+           echo "le nombre de carte est : ".$scoreLogin->getTotalCard();
+           echo "<br>";
+           echo "le score total est : ".$scoreLogin->getScore();*/
 
     //______________________lancer la visualisation des cartes _____________________________          
 
@@ -153,7 +179,7 @@ session_start();
                 if(($card1===$card2) && ($val1!=$val2)){
                     if ($_SESSION['set_array'] != "OK"){
                         $_SESSION['set_array'] = "OK";
-                        $_SESSION['nb_card_return']=1; // <-initialise variable de session qui va s'incrémenter
+                        $_SESSION['nb_card_return']=0; // <-initialise variable de session qui va s'incrémenter
                         $permanent_array=[];
                     $new_permanent_array= array_merge ($temporary_array, $permanent_array);
                     $_SESSION['permanent_array']=$new_permanent_array;
@@ -189,6 +215,10 @@ session_start();
     ?>
         </div>
     </div>
+<?php
+
+
+    ?>
 </main>
 
 
