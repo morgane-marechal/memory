@@ -117,7 +117,7 @@ class User{
         $allInfo = $bdd -> prepare("SELECT * FROM utilisateurs WHERE login = '$this->login'");
         $allInfo -> execute();
         $result = $allInfo->fetch(PDO::FETCH_ASSOC);
-        echo "<br>Le login est ".$result ['login'];
+        return $result ['login'];
     }
 
     public function getId(){
@@ -125,7 +125,7 @@ class User{
         $allInfo = $bdd -> prepare("SELECT * FROM utilisateurs WHERE login = '$this->login'");
         $allInfo -> execute();
         $result = $allInfo->fetch(PDO::FETCH_ASSOC);
-        echo "<br>L'Id' est ".$result ['id'];
+        return $result ['id'];
     }
 
 
@@ -134,7 +134,7 @@ class User{
         $allInfo = $bdd -> prepare("SELECT * FROM utilisateurs WHERE login = '$this->login'");
         $allInfo -> execute();
         $result = $allInfo->fetch(PDO::FETCH_ASSOC);
-        echo "<br>L'email est ".$result ['email'];
+        return $result ['email'];
     }
 
 }

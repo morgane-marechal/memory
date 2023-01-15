@@ -1,4 +1,21 @@
 <?php
+// --------------------connexion à PDO----------------------------
+
+$dsn = 'mysql:host=localhost;dbname=memory;charset=utf8';
+$user = 'root';
+$password = '';
+$bdd = new PDO($dsn,$user,$password);
+
+try{
+    $bdd=new PDO('mysql:host=localhost;dbname=memory;charset=utf8','root','');
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}catch(PDOException $e){
+    echo "Echec de la connexion: ".$e->getmessage();
+    exit;
+}
+
+// --------------------classe Score----------------------------
+
 
 class Score{
     public $login_id;
@@ -14,7 +31,7 @@ class Score{
     }
 
     public function setScore($total_card, $nb_card_return){
-       $start_score = $total_card*10;
+       $start_score = $total_card*15;
        $minus_point = $nb_card_return;
        $total = $start_score - $minus_point;
        return $this->score = $total;
@@ -28,11 +45,17 @@ class Score{
         return $this -> nb_card_return;
     }
 
-
-
-
     public function getScore(){
         return $this -> score;
+    }
+
+    public function getAllScore(){
+        global $bdd;
+        $allScore = $bdd -> prepare("SELECT * FROM score");
+        $allScore -> execute();
+        $result = $allScore->fetch(PDO::FETCH_ASSOC);
+        echo var_dump($result);
+        
     }
 
     public function registerScore(){
@@ -41,8 +64,6 @@ class Score{
                  VALUES(?,?,?,?)");
                $newScore->execute(array($this->login_id,$this->score, $this->nb_card_return, $this->total_card));
                echo "Votre nouveau score a été enregistré !";
-               header('Location: http://localhost/memory/display-score.php'); // <- redirection vers la page connexion
-               exit();
         }
     }
 

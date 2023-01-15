@@ -18,17 +18,14 @@ session_start();
     <?php $num_for_win_game=count($permanent_array); //<-condition de fin de jeu quand ce tableau comporte le nombre total de carte
     $total_card=$_SESSION['total_card'];
     if($num_for_win_game===$total_card){
-        echo "<div id = 'win'>Bravo vous avez fini le jeu !<br></div>";
+        echo "<div id = 'win'>Bravo vous avez fini le jeu !".$_SESSION['score']."<br></div>";;
 }
-    echo $total_card;?>
+    //echo $total_card;
+    ?>
     <?php include ('get-button.php'); ?>
 
 
-    <div id="sessionlog">
-        <?php if (isset($_SESSION['login'])){
-                        echo "<p>Bonjour ".$_SESSION['login'].". Vous êtes connecté</p>";
-                    }
-        ?>
+
     </div>
     <main>
                 <?php if(empty($_SESSION['login'])){
@@ -95,38 +92,43 @@ session_start();
             $total_card=$_SESSION['total_card'];
             //echo $total_card;
             if($num_for_win_game===$total_card){
-                    echo "<div id = 'win'>Bravo vous avez fini le jeu !<br></div>";
-            }
+                echo "<div id = 'win'>Bravo vous avez fini le jeu !".$_SESSION['score']."<br></div>";
+                //_______________________initialiser variable pour score________________
 
-            //_______________________initialiser variable pour score________________
+                 $_SESSION['nb_card_return']++;
+                 $nb_card_return = $_SESSION['nb_card_return']++;
+                 $total_card=$_SESSION['total_card'];
+            
+                // faire requete PDO pour aller chercher infos du login (login et login_id)
+                $login=$_SESSION['login'];
+                //echo $login."<br>";
+                $test = new User("$login", "$password", "$email");
+                $login_id= $test -> getId();
+                //echo "<br>le LOGIN ID est ".$login_id;
+                $_SESSION['id']=$login_id;
+                //echo "<br><br>".$_SESSION['id']."<br><br>";
+                $scoreLogin = new Score("$login_id", "$nb_card_return", "$total_card");
+                $scoreLogin->setScore($total_card, $nb_card_return);
+               $_SESSION['score']="<br><h2>Votre score total est de: ".$scoreLogin->getScore()."</h2><br>";
+               //echo $_SESSION['score'];
+                $scoreLogin->registerScore();
+                $_SESSION['total_card']=0;
+                }
 
-            echo $_SESSION['nb_card_return']++;
-            echo $nb_card_return = $_SESSION['nb_card_return']++;
-            echo $total_card=$_SESSION['total_card'];
-            //$scoreLogin = new Score("$login_id", "$nb_card_return", "$total_card");
-        
-            // faire requete PDO pour aller chercher infos du login (login et login_id)
-            $login=$_SESSION['login'];
-            //echo $login."<br>";
-            $test = new User("$login", "$password", "$email");
-           /* $login_id= $test -> getId();
-            //echo "L'id est ".$login_id;
-            echo "<br>";
-            $scoreLogin = new Score("$login_id", "$nb_card_return", "$total_card");
-           echo $scoreLogin->setScore($total_card, $nb_card_return);
-           echo "<br>";
-           echo "le nombre de tours est : ".$scoreLogin->getcard_return();
-           echo "<br>";
-           echo "le nombre de carte est : ".$scoreLogin->getTotalCard();
-           echo "<br>";
-           echo "le score total est : ".$scoreLogin->getScore();*/
+
 
     //______________________lancer la visualisation des cartes _____________________________          
 
                 if(($_SESSION['memory_game'] != "card_set")&&(isset($_POST['nb_pairs']))){
 
                     $nbpairs=$_POST['nb_pairs'];
+                    //----------etre sur que les variable de session sont bien vidée
+                    $_SESSION['temporary_array']=[]; //pour réinitialiser le tableau
+                    $_SESSION['permanent_array']=[]; //pour réinitialiser le jeu
+                    $_SESSION['order_card']=[];
+                    $_SESSION['nb_card_return']=0;
                     $display_test=[];
+
                     for ($i = 1; $i <= $nbpairs; $i++) {
                     $display_test[$i] = $i.'.jpg';
                     }
@@ -183,7 +185,6 @@ session_start();
                         $permanent_array=[];
                     $new_permanent_array= array_merge ($temporary_array, $permanent_array);
                     $_SESSION['permanent_array']=$new_permanent_array;
-                    //    echo var_dump($new_permanent_array);
                     $_SESSION['temporary_array']=[];
                     }elseif($_SESSION['set_array'] === "OK"){
                         $permanent_array=$_SESSION['permanent_array'];
@@ -195,9 +196,12 @@ session_start();
                     $total_card=$_SESSION['total_card'];
                     //echo $total_card;
                     if($num_for_win_game===$total_card){
-                            echo "<br><div id = 'win'>Bravo vous avez fini le jeu !<br></div>";
+                            echo "<div id = 'win'>Bravo vous avez fini le jeu !<br> Votre score a été enregistré !</div>";
                             $endgame=true;
                             $_SESSION['endgame']=$endgame;
+                            $_SESSION['memory_game'] = [];
+                            header('Location: http://localhost/memory/index.php'); // <- redirection vers la page connexion
+                            exit();
                     }
 
                     }
