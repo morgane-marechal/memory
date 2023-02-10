@@ -2,8 +2,8 @@
 
 // --------------------connexion à PDO----------------------------
 
-$dsn = 'mysql:host=localhost;dbname=memory;charset=utf8';
-$user = 'root';
+$dsn = 'host';
+$user = '';
 $password = '';
 $bdd = new PDO($dsn,$user,$password);
 
