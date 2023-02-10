@@ -1,6 +1,6 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=memory;charset=utf8';
-$user = 'root';
+$dsn = '';
+$user = '';
 $password = '';
 $bdd = new PDO($dsn,$user,$password);
 
